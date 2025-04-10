@@ -10,7 +10,9 @@ from hybrid_insight_engine import generate_combined_insights
 from trends import plot_health_trends
 
 app = Flask(__name__)
-CORS(app) 
+CORS(app, resources={r"/upload-csv/*": {"origins": [
+    "https://devulapellykushalhie.vercel.app/"  
+]}}) 
 
 @app.route('/upload-csv/', methods=['POST'])
 def upload_csv():
