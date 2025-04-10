@@ -4,6 +4,7 @@ from flask_cors import CORS
 import pandas as pd
 import base64
 from io import BytesIO
+import os
 
 from hybrid_insight_engine import generate_combined_insights
 from trends import plot_health_trends
@@ -50,7 +51,9 @@ def upload_csv():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host='0.0.0.0', port=port, debug=True)
+
 
 
 
